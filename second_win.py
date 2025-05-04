@@ -89,8 +89,8 @@ class TestWin(QWidget):
         self.tw = FinalWin()
     
     
-app = QApplication([])
-mw = TestWin()
-
-app.exec_()
+#app = QApplication([])
+#mw = TestWin()
+#
+#app.exec_()
 
