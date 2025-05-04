@@ -1,5 +1,6 @@
 # напиши здесь код для второго экрана приложения
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit)
 from instr import *
@@ -13,6 +14,22 @@ class TestWin(QWidget):
         self.initUI()
         self.connects()
         self.show()
+    
+    def timer_test(self):
+        global time
+        time = QTime(0, 1, 0)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer1Event)
+        self.timer.start(1000)
+    
+    def timer1Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.text_timer.setText(time.toString("hh:mm:ss"))
+        self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
+        self.text_timer.setStyleSheet("color: rgb(0, 0, 0)")
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
 
     def set_appear(self):
         self.setWindowTitle(txt_title)
@@ -25,7 +42,7 @@ class TestWin(QWidget):
         self.back = QLabel(txt_test1)
         self.squats = QLabel(txt_test2)
         self.pulse = QLabel(txt_test3)
-        self.time = QLabel("dsad")
+        self.text_timer = QLabel("")
 
         self.test1 = QPushButton(txt_starttest1)
         self.test2 = QPushButton(txt_starttest2)
@@ -71,7 +88,7 @@ class TestWin(QWidget):
         self.v_line1.addWidget(self.bnt_next, alignment =
         Qt.AlignRight)
 
-        self.v_line2.addWidget(self.time, alignment =
+        self.v_line2.addWidget(self.text_timer, alignment =
         Qt.AlignCenter)
 
         self.h_line.addLayout(self.v_line1)
@@ -83,6 +100,9 @@ class TestWin(QWidget):
 
     def connects(self):
         self.bnt_next.clicked.connect(self.next_click)
+        self.test1.clicked.connect(self.timer_test)
+        self.test2.clicked.connect(self.next_click)
+        self.test3.clicked.connect(self.next_click)
     
     def next_click(self):
         self.hide()
