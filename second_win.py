@@ -72,7 +72,7 @@ class TestWin(QWidget):
         Qt.AlignRight)
 
         self.v_line2.addWidget(self.time, alignment =
-        Qt.AlignRight)
+        Qt.AlignCenter)
 
         self.h_line.addLayout(self.v_line1)
         self.h_line.addLayout(self.v_line2)
