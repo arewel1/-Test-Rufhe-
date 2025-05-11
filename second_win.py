@@ -6,6 +6,14 @@ from PyQt5.QtWidgets import (
 from instr import *
 from final_win import *
 
+
+class Experiment():
+    def __init__(self, age, test1, test2, test3):
+        self.age = age
+        self.test1 = test1
+        self.test2 = test2
+        self.test3 = test3
+
 class TestWin(QWidget):
     
     def __init__(self):
@@ -144,10 +152,16 @@ class TestWin(QWidget):
     
     def next_click(self):
         self.hide()
-        self.tw = FinalWin()
+        self.exp = Experiment(self.hint1age.text(),self.hint1test.text(),
+                              self.hint2test.text(),self.hint3test.text())
+
+
+
+        self.tw = FinalWin(self.exp)
+        
     
     
-app = QApplication([])
-mw = TestWin()
-app.exec_()
+#app = QApplication([])
+#mw = TestWin()
+#app.exec_()
 
