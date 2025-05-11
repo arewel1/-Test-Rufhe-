@@ -17,7 +17,7 @@ class TestWin(QWidget):
     
     def timer_test(self):
         global time
-        time = QTime(0, 1, 0)
+        time = QTime(0, 0, 15)
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer1Event)
         self.timer.start(1000)
@@ -52,19 +52,20 @@ class TestWin(QWidget):
         time = QTime(0, 1, 0)
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer3Event)
-        self.timer.start(1500)
+        self.timer.start(1000)
     
     def timer3Event(self):
         global time
+        time = time.addSecs(-1)
+        self.text_timer.setText(time.toString("hh:mm:ss"))
+        self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
+        self.text_timer.setStyleSheet("color: rgb(0, 0, 0)")
         if int(time.toString("hh:mm:ss")[6:8]) >= 45:
             self.text_timer.setStyleSheet("color: rgb(0, 255, 0)")
         elif int(time.toString("hh:mm:ss")[6:8]) <= 15:
             self.text_timer.setStyleSheet("color: rgb(0, 255, 0)")
         else :
             self.text_timer.setStyleSheet("color: rgb(0, 0, 0)")
-        self.text_timer.setText(time.toString("hh:mm:ss")[6:8])
-        self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
-        self.text_timer.setStyleSheet("color: rgb(0, 0, 0)")
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
 
@@ -137,17 +138,16 @@ class TestWin(QWidget):
 
     def connects(self):
         self.bnt_next.clicked.connect(self.next_click)
-        self.test3.clicked.connect(self.timer_test)
+        self.test1.clicked.connect(self.timer_test)
         self.test2.clicked.connect(self.timer_sits)
-        self.test1.clicked.connect(self.timer_finel)
+        self.test3.clicked.connect(self.timer_final)
     
     def next_click(self):
         self.hide()
         self.tw = FinalWin()
     
     
-#app = QApplication([])
-#mw = TestWin()
-#
-#app.exec_()
+app = QApplication([])
+mw = TestWin()
+app.exec_()
 
