@@ -1,6 +1,6 @@
 
 win_x, win_y = 200, 100
-win_width, win_height = 1000, 600
+win_width, win_height = 1400, 600
 
 txt_hello = 'Добро пожаловать в программу по определению состояния здоровья!'
 txt_next = 'Начать'

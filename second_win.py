@@ -105,6 +105,7 @@ class TestWin(QWidget):
         self.v_line1 = QVBoxLayout()
         self.v_line2 = QVBoxLayout()
 
+
         self.v_line1.addWidget(self.name, alignment =
         Qt.AlignLeft)
         self.v_line1.addWidget(self.hint1name, alignment =
@@ -132,7 +133,7 @@ class TestWin(QWidget):
         self.v_line1.addWidget(self.hint3test, alignment =
         Qt.AlignLeft)
         self.v_line1.addWidget(self.bnt_next, alignment =
-        Qt.AlignRight)
+        Qt.AlignCenter)
 
         self.v_line2.addWidget(self.text_timer, alignment =
         Qt.AlignCenter)
